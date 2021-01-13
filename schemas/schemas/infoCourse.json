@@ -41,6 +41,11 @@
                 }
             }
         },
+        "questionParams": {
+            "description": "Parameterize a course with a specific language to use for questions.",
+            "type": "string",
+            "default": "none"
+        },
         "assessmentSets": {
             "description": "Assessment sets.",
             "type": "array",

@@ -97,6 +97,11 @@
             "description": "Whether the assessment will support group work.",
             "type": "boolean",
             "default": false
+        },
+        "questionParams": {
+            "description": "Parameterize a course with a specific language to use for questions.",
+            "type": "string",
+            "default": "none"
         }
     },
     "definitions": {
@@ -210,6 +215,11 @@
                     "type": "integer",
                     "minimum": 0
                 },
+                "questionParams": {
+                    "description": "Parameterize a course with a specific language to use for questions.",
+                    "type": "string",
+                    "default": "none"
+                },
                 "questions": {
                     "description": "Array of questions in the zone.",
                     "type": "array",
@@ -256,6 +266,11 @@
                     "description": "The maximum number of graded submissions allowed for each question instance.",
                     "type": "number",
                     "default": 1
+                },
+                "questionParams": {
+                    "description": "Parameterize a course with a specific language to use for questions.",
+                    "type": "string",
+                    "default": "none"
                 }
             }
         },

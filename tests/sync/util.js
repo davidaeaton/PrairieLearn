@@ -34,7 +34,7 @@ const syncFromDisk = require('../../sync/syncFromDisk');
  * @property {string} color
  */
 
-/** 
+/**
  * @typedef {Object} Course
  * @property {string} uuid
  * @property {string} name
@@ -42,6 +42,7 @@ const syncFromDisk = require('../../sync/syncFromDisk');
  * @property {string} timezone
  * @property {boolean} exampleCourse
  * @property {CourseOptions} options
+ * @property {string} questionParams
  * @property {Tag[]} tags
  * @property {Topic[]} topics
  * @property {AssessmentSet[]} assessmentSets
@@ -66,6 +67,7 @@ const syncFromDisk = require('../../sync/syncFromDisk');
  * @property {string} [timezone]
  * @property {{ [uid: string]: "Student" | "TA" | "Instructor"}} [userRoles]
  * @property {CourseInstanceAllowAccess[]} [allowAccess]
+ * @property {string} questionParams
  */
 
 /**
@@ -107,6 +109,7 @@ const syncFromDisk = require('../../sync/syncFromDisk');
  * @property {QuestionAlternative[]} alternatives
  * @property {number} numberChoose
  * @property {number} triesPerVariant
+ * @property {string} questionParams
  */
 
 /**
@@ -116,6 +119,7 @@ const syncFromDisk = require('../../sync/syncFromDisk');
  * @property {number} maxChoose
  * @property {number} bestQuestions
  * @property {ZoneQuestion[]} questions
+ * @property {string} questionParams
  */
 
 /**
@@ -137,6 +141,7 @@ const syncFromDisk = require('../../sync/syncFromDisk');
  * @property {Zone[]} zones
  * @property {boolean} constantQuestionValue
  * @property {boolean} groupWork
+ * @property {string} questionParams
  */
 
 /**
@@ -184,7 +189,7 @@ const syncFromDisk = require('../../sync/syncFromDisk');
 /**
  * Accepts a CourseData object and creates a PrairieLearn course directory
  * structure from it. Returns the path to the newly-created directory.
- * 
+ *
  * @param {CourseData} courseData - The course data to write to disk
  * @returns {Promise<string>} - The path to the directory containing the course data
  */
@@ -198,7 +203,7 @@ module.exports.writeCourseToTempDirectory = async function(courseData) {
  * Accepts a CourseData object and writes it as a PrairieLearn course
  * into the given directory. Removes any existing content from the
  * directory.
- * 
+ *
  * @param {CourseData} courseData - The course data to write to disk
  * @param {string} coursePath - The path to the directory to write to
  */
@@ -433,7 +438,7 @@ module.exports.createAndSyncCourseData = async function() {
 /**
  * Writes the given course data to a new temporary directory and returns the
  * path to the directory.
- * 
+ *
  * @param {CourseData} courseData - The course data to write and sync
  * @returns {Promise<string>} the path to the new temp directory
  */
@@ -444,8 +449,8 @@ module.exports.writeAndSyncCourseData = async function(courseData) {
 };
 
 /**
- * Overwrites the course data in the given directory and 
- * 
+ * Overwrites the course data in the given directory and
+ *
  * @param {CourseData} courseData - The course data write and sync
  * @param {string} courseDir - The path to write the course data to
  */
@@ -486,10 +491,10 @@ module.exports.captureDatabaseSnapshot = async function() {
 
 /**
  * Computes setA U setB.
- * 
+ *
  * @template T
- * @param {Set.<T>} setA 
- * @param {Set.<T>}setB 
+ * @param {Set.<T>} setA
+ * @param {Set.<T>}setB
  * @returns {Set.<T>} The union of setA and setB
  */
 function setUnion(setA, setB) {
@@ -498,9 +503,9 @@ function setUnion(setA, setB) {
 
 /**
  * Checks if two sets contain the same elements.
- * 
+ *
  * @param {Set.<any>} setA
- * @param {Set.<any>} setB 
+ * @param {Set.<any>} setB
  * @returns {boolean} whether or not the sets contain the same elements.
  */
 function checkSetsSame(setA, setB) {
@@ -513,7 +518,7 @@ function checkSetsSame(setA, setB) {
  * matching if they both contain the same keys and if for each key, the array
  * of values contains the same elements. Elements may be in different orders.
  * Optionally, a subset of the keys in the snapshot can be ignored.
- * 
+ *
  * @param {{ [key: string]: any[] }} snapshotA - The first snapshot
  * @param {{ [key: string]: any[] }} snapshotB - The second snapshot
  * @param {string[]} [ignoreKeys=[]] An optional list of keys to ignore

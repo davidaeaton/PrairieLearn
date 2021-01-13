@@ -27,6 +27,7 @@ DECLARE
     new_assessment_question_id bigint;
     new_assessment_question_ids bigint[];
     bad_assessments text;
+    question_params text;
 BEGIN
     -- The sync algorithm used here is described in the preprint
     -- "Preserving identity during opportunistic unidirectional
@@ -362,7 +363,7 @@ BEGIN
                 SELECT string_agg(convert_to(coalesce(r[2],
                     length(length(r[1])::text) || length(r[1])::text || r[1]),
                     'SQL_ASCII'),'\x00')
-                FROM regexp_matches(number, '0*([0-9]+)|([^0-9]+)', 'g') r 
+                FROM regexp_matches(number, '0*([0-9]+)|([^0-9]+)', 'g') r
             ) ASC) AS order_by
         FROM assessments
         WHERE

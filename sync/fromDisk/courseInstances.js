@@ -31,6 +31,7 @@ function getParamsForCourseInstance(courseInstance, courseTimezone) {
         display_timezone: courseInstance.timezone || courseTimezone || 'America/Chicago',
         access_rules: accessRules,
         user_roles: userRoles,
+        question_params: courseInstance.questionParams
     };
 }
 
